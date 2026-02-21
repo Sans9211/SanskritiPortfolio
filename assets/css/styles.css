@@ -1,5 +1,5 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&amp;family=Roboto:wght@400;500&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap");
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -22,9 +22,9 @@
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: 'Roboto', sans-serif;
-  --title-font: 'Lora', serif;
-  --biggest-font-size: 1.5rem;
+  --body-font: 'Lexend Deca', sans-serif;
+  --title-font: 'Lexend Deca', sans-serif;
+  --biggest-font-size: 1.25rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;
@@ -46,7 +46,7 @@
 /* Responsive typography */
 @media screen and (min-width: 1024px) {
   :root {
-    --biggest-font-size: 3rem;
+    --biggest-font-size: 2.5rem;
     --h1-font-size: 2.25rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
@@ -139,6 +139,14 @@ body.dark-theme {
   color: var(--title-color);
 }
 
+.dark-theme .home__social-link img{
+  filter: brightness(0) invert(1);
+}
+
+.dark-theme .footer__social-link img{
+  filter: brightness(0) invert(1);
+}
+
 .dark-theme .section__border{
   border-bottom: 1px solid hsl(207, 4%, 32%);
 }
@@ -203,7 +211,7 @@ body.dark-theme {
   position: fixed;
   bottom: 2rem;
   left: 0;
-  Z-index: var(--z-fixed);
+  z-index: var(--z-fixed);
 }
 
 .nav{
@@ -300,7 +308,11 @@ body.dark-theme {
 }
 
 .home__data{
-  row-gap: 1.5rem;
+  row-gap: 0.5rem;
+}
+
+.home__data .home__social{
+  margin-top: 0.5rem;
 }
 
 .home__title{
@@ -323,14 +335,40 @@ body.dark-theme {
 }
 
 .home__perfil{
-  width: 170px;
- 
-  background: var(--gradient-color);
-  border-radius: 5.5rem;
+  width: 135px;
+  height: 155px;
+  background: hsl(220, 30%, 18%);
+  border-radius: 4.5rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  position: relative;
+}
+
+.home__perfil::before{
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(45deg, 
+    hsl(265, 80%, 65%), 
+    hsl(185, 80%, 60%), 
+    hsl(280, 80%, 70%), 
+    hsl(190, 80%, 65%), 
+    hsl(265, 80%, 65%));
+  background-size: 300% 300%;
+  border-radius: 5.5rem;
+  z-index: -1;
+  animation: rotate-gradient 4s linear infinite, pulse-glow 2s ease-in-out infinite;
+}
+
+.home__perfil::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: hsl(220, 30%, 18%);
+  border-radius: 5.5rem;
+  z-index: -1;
 }
 
 .home__perfil img{
@@ -368,6 +406,18 @@ body.dark-theme {
   font-size: 1.25rem;
   color: var(--text-color-light);
   transition: color .3s;
+}
+
+.home__social-link img{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(0);
+  transition: transform .3s;
+}
+
+.home__social-link:hover img{
+  transform: scale(1.1);
 }
 
 .home__social-link:hover{
@@ -930,6 +980,14 @@ body.dark-theme {
   transition: transform .3s;
 }
 
+.footer__social-link img{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0);
+  transition: transform .3s;
+}
+
 .footer__social-link:hover{
   transform: translateY(-.15rem);
 }
@@ -1138,7 +1196,7 @@ body.dark-theme {
   }
 
   .home__title{
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 
   .scrollup{
@@ -1172,7 +1230,7 @@ body.dark-theme {
   }
 
   .home__title{
-    font-size: var(--biggest-font-size);
+    font-size: var(--h2-font-size);
   }
   .home__blob{
     width: 400px;
@@ -1198,8 +1256,12 @@ body.dark-theme {
     right: -5rem;
   }
   .home__data{
-    row-gap: 2.5rem;
+    row-gap: 0.5rem;
   }  
+  .home__data .home__social{
+    margin-top: 0.5rem;
+    align-self: start;
+  }
   .home__social{
     column-gap: 2rem;
   }
@@ -1346,6 +1408,9 @@ body.dark-theme {
   }
 }
 
-
-
-
+/* Make SQL and MongoDB logos more visible in dark mode */
+body.dark-theme .skills__blob img {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
